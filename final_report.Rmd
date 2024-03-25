@@ -1,0 +1,74 @@
+---
+title: "Data 550 Final Project 2 R Markdown"
+author: "Cathy Zhuang"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+here::i_am("final_report.Rmd")
+```
+
+
+## Introduction
+
+Our research is centered on young, predominantly male Hispanic migrant agricultural workers in the Florida, a demographic known for enduring long, intense work hours under extreme heat and at low altitudes. These individuals often have limited access to healthcare and are subject to an elevated rate of occupational injuries. They are routinely exposed to various risk factors, including pesticides, high temperatures, strenuous physical labor, and poor working conditions.
+A significant concern for these workers is Heat-Related Illness (HRI). In one study, a startling one-third of the participants reported experiencing three or more HRI symptoms. The nature of their work is often under sweltering conditions and under pressure to meet demanding quotas, which exacerbates these risks. These factors likely contribute to farmworkers facing a staggering 35 times greater risk of heat-related  death compared to the general civilian workforce.
+
+The datasets I will be working with include data on 37 indoor agricultural workers and 65 outdoor agricultural workers in Florida, taken over one day of workday observation. The dataset contains the following: 
+
+* demographics   
+* general reported drinking/hydration habits   
+* medications   
+* health history (of both family and self)   
+* type of work   
+* baseline clinical measurements   
+* urine measurements   
+* serum measurements   
+* movement throughout the workday   
+* HRI symptoms   
+* work habits and conditions   
+* hydration habits throughout the day   
+
+This study aims to identify differences in terms of acute kidney injury (AKI) and estimated glomerular filtration rate (EGFR) between outdoor and indoor agricultural workers in Central Florida in the United States. We want to examine how workplace habits, HRI symptoms, clinical biomarkers, and renal biomarkers contribute to AKI in agricultural workers in both indoor and outdoor settings, and if there are differences between the two settings that may or may not contribute to AKI.
+
+For this specific report, I will be making a table of demographics and a figure observing the baseline systolic blood pressure for each group. Please see the .Rmd file for the loading data code.
+
+```{r, include=FALSE}
+#### Packages ####
+# Load required packages
+required_packages <- c(
+  "tidyverse", "gtsummary", "haven", "flextable", "labelled", "naniar", "pcaMethods", "ISLR", "pls", "glmnet", "FactoMineR", "factoextra", "ggplot2"
+)
+
+# Check and load required packages
+for (pkg in required_packages) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    install.packages(pkg)
+  }
+  library(pkg, character.only = TRUE)
+}
+```
+
+
+## Table
+```{r}
+table1 <- readRDS(
+	File = here::here("output/table1.rds")
+)
+
+table1
+```
+
+This table above shows the demographics of the participants in this study, categorized by either indoor or outdoor agricultural workers. To test for differences between the two groups, I used the built-in p-value function in `gtsummary`, called `add_p()`. It performed Wilcoxon rank sum tests, Fisher's exact tests, and Pearson's chi-squared tests where appropriate. We can see that there may be differences that we need to account for when creating further models. The indoor workers have more males and more years of education. Additionally, the racial and ethnic makeup of the two groups are also different. We may also need to take into account how many years that each group has been working in agriculture.
+
+
+## Figure
+```{r}
+knitr::include_graphics(
+	here::here("output/figure.png")
+)
+```
+
+This figure shows the box plots for the systolic blood pressure of each agricultural group (indoor farmworkers and outdoor farmworkers). These measurements were taken on the baseline day. From this, we may want to look into whether there is a significant difference in the blood pressures of both groups.
