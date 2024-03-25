@@ -1,3 +1,5 @@
+final_report.html: final_report.Rmd output/table1.rds output/figure.png code/03_render_report.R
+	Rscript code/03_render_report.R
 
 derived_data/kPMdataLAB.rds derived_data/oPMdataLAB.rds&: \ 
 	datasets/k23data.sas7bdat datasets/ohearddata.sas7bdat datasets/formats.sas7bcat

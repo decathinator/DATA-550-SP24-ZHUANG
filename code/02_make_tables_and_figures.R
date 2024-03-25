@@ -2,8 +2,7 @@ here::i_am("code/02_make_tables_and_figures.R")
 
 # List of packages
 required_packages <- c(
-  "gtsummary", "haven", "flextable", "labelled", "naniar", "pcaMethods", "ISLR", "pls", "glmnet", 
-  "FactoMineR", "factoextra", "car", "corrplot", "VIM", "mice",  "quantreg", "lqr","lqmm","broom", "ordinal","tidyverse", "dplyr"
+  "gtsummary", "haven", "flextable", "labelled", "tidyverse", "dplyr"
 )
 
 # Check and load required packages
@@ -32,8 +31,8 @@ for (name in names(datasets)) {
 
 
 #### Making Table 1. Demographics ####
-table1 <- tbl_summary(    
-  Data1_Demog,  
+table1 <- gtsummary::tbl_summary(    
+  Data1_Demog %>% select(-SID),  
   by = VISIT,
   digits 	= list(all_categorical() ~ 0,	all_continuous() ~ 0),
   type = list(AGRI_YRS_IN_SOUTH ~ 'continuous'),
@@ -57,14 +56,14 @@ table1 <- tbl_summary(
     AGRI_START~"Age Started Agricultural Work", 
     AGRI_YRS_IN_SOUTH~"Years in Southern Agriculture")
 ) %>% 
-  modify_caption("Table 1. Demographic Characteristics of Indoor and Outdoor Agricultural Workers") %>%	
-  modify_spanning_header(c("stat_1", "stat_2") ~ "Agricultural Group") %>%	
-  bold_labels() %>%
-  add_p()
+  gtsummary::modify_caption("Table 1. Demographic Characteristics of Indoor and Outdoor Agricultural Workers") %>%	
+  gtsummary::modify_spanning_header(c("stat_1", "stat_2") ~ "Agricultural Group") %>%	
+  gtsummary::bold_labels() %>%
+  gtsummary::add_p()
 
 saveRDS(
   table1, 
-  File = here::here("output/table1.rds") 
+  file = here::here("output/table1.rds") 
 )
 
 
@@ -79,6 +78,6 @@ figure <- ggplot(Data2_BaseClin, aes(x = VISIT, y = BP_SYSTOLIC_BL, fill = VISIT
 
 ggsave(
   here::here("output/figure.png"),
-  Plot = figure,
-  Device = "png" 
+  plot = figure,
+  device = "png" 
 )

@@ -55,7 +55,7 @@ for (pkg in required_packages) {
 ## Table
 ```{r}
 table1 <- readRDS(
-	File = here::here("output/table1.rds")
+	file = here::here("output/table1.rds")
 )
 
 table1

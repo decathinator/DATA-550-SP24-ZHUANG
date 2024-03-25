@@ -16,3 +16,10 @@
 - reads datasets saved by `code/01_make_datasets.R`
 - makes table using `Data1_Demog.rds` and saves as `table1.rds` in `output/`
 - makes figure using `Data2_BaseClin.rds` and saves as `figure.png` in `output/`
+
+`code/03_render_report.R`
+- renders `final_report.Rmd` into an html file
+
+`final_report.Rmd`
+- loads `table1.rds` in `output/` and `figure.png` in `output/`
+- displays the table and figure along with text/descriptions/intro/etc.
