@@ -1,5 +1,10 @@
 # Code Description
 
+To Synchronize Package Repository:
+Open make file & “make” the .PHONY rule install to synchronize R packages to versions used to create project
+
+To create final report, type `make final_report.html` into the terminal.
+
 `code/00_import_data.R`
 - imports data
 - saves two files for the two cohorts: `kPMdataLAB` and `oPMdataLAB` as `.rds` files in the folder `derived_data`
