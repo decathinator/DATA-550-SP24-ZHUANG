@@ -1,9 +1,42 @@
-# Code Description
+# Data 550 Final Project Spring 2024  
 
-To Synchronize Package Repository:
-Open make file & “make” the .PHONY rule install to synchronize R packages to versions used to create project
+   
+## Creating the Report    
+There are two methods in which you can create the report: 
 
-To create final report, type `make final_report.html` into the terminal.
+- Locally:  
+1. Make sure you have `make` and `R` installed
+2. Make sure you have `renv` R package installed  
+3. Open a terminal in the project directory  
+4. Type `make install` to restore the R package environment using `renv`  
+5. Type `make final_report.html` to compile the final report   
+
+OR 
+
+- Using Docker:  
+1. Pull the image from [this link (my image on DockerHub)](https://hub.docker.com/repository/docker/decathinator/data-550-sp24-zhuang/general)   
+2. Type `make mount-report` in the terminal (This step works for both Windows-OS and a Mac/Linux-OS)  
+3. The compiled report should be in your local `\report` folder  
+  
+   
+## Makefile
+
+The following commands can be typed into the terminal:
+
+`make final_report.html` will compile the report
+
+`make import_data` will do the first step in processing data (by running `code/00_import_data.R`)
+
+`make process_data` will do the second step in processing data (by running `code/01_make_datasets.R`)
+
+`make install` will restore the R package environment with `renv`
+
+`make clean` will clear the outputs
+
+`make mount-report` will compile the report
+
+
+## Code Description
 
 `code/00_import_data.R`
 - imports data
