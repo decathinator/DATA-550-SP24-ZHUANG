@@ -2,18 +2,7 @@
 
    
 ## Creating the Report    
-There are two methods in which you can create the report: 
-
-- Locally:  
-1. Make sure you have `make` and `R` installed
-2. Make sure you have `renv` R package installed  
-3. Open a terminal in the project directory  
-4. Type `make install` to restore the R package environment using `renv`  
-5. Type `make final_report.html` to compile the final report   
-
-OR 
-
-- Using Docker:  
+  
 1. Pull the image from [this link (my image on DockerHub)](https://hub.docker.com/repository/docker/decathinator/data-550-sp24-zhuang/general)   
 2. Type `make mount-report` in the terminal (This step works for both Windows-OS and a Mac/Linux-OS)  
 3. The compiled report should be in your local `\report` folder  

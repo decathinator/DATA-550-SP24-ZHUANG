@@ -57,3 +57,5 @@ COPY code/02_make_tables_and_figures.R code/02_make_tables_and_figures.R
 COPY code/03_render_report.R code/03_render_report.R
 
 CMD make final_report.html
+
+CMD cp final_report.html report/
