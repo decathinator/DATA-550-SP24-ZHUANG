@@ -39,7 +39,7 @@ For this specific report, I will be making a table of demographics and a figure 
 #### Packages ####
 # Load required packages
 required_packages <- c(
-  "tidyverse", "gtsummary", "haven", "flextable", "labelled", "naniar", "pcaMethods", "ISLR", "pls", "glmnet", "FactoMineR", "factoextra", "ggplot2"
+  "tidyverse", "gtsummary", "haven", "flextable", "labelled", "naniar", "ggplot2"
 )
 
 # Check and load required packages

@@ -2,15 +2,11 @@ here::i_am("code/01_make_datasets.R")
 
 # List of packages
 required_packages <- c(
-  "gtsummary", "haven", "flextable", "labelled", "naniar", "pcaMethods", "ISLR", "pls", "glmnet", 
-  "FactoMineR", "factoextra", "car", "corrplot", "VIM", "mice",  "quantreg", "lqr","lqmm","broom", "ordinal","tidyverse", "dplyr"
+  "dplyr"
 )
 
 # Check and load required packages
 for (pkg in required_packages) {
-  if (!requireNamespace(pkg, quietly = TRUE)) {
-    install.packages(pkg)
-  }
   library(pkg, character.only = TRUE)
 }
 

@@ -38,3 +38,28 @@ install:
 # Cleanup task for removing all generated files
 clean:
 	rm -f derived_data/*.rds output/*.rds output/*.png import_data process_data final_report.html
+	
+	
+# ------------------------------------------------------------------------------
+# DOCKER RULES
+
+PROJECTFILES = report/final_report.Rmd code/00_import_data.R code/01_make_datasets.R code/02_make_tables_and_figures.R code/03_render_report.R Makefile
+RENVFILES = renv.lock renv/activate.R renv/settings.json
+
+# Build image
+data550_final_project: Dockerfile $(PROJECTFILES) $(RENVFILES)
+	docker build -t decathinator/data-550-sp24-zhuang .
+	touch $@
+
+# Run container
+## Detect OS
+OS := $(shell uname -s)
+## Set volume mount path prefix based on OS
+ifeq ($(OS),Windows_NT)
+	VOLUME_PREFIX := "/"
+else
+	VOLUME_PREFIX := ""
+endif
+## Mount Rule
+mount-report: 
+	docker run -v "$(OS_PATH_PREFIX)$(PWD)/report":/project/report decathinator/data-550-sp24-zhuang

@@ -2,14 +2,11 @@ here::i_am("code/02_make_tables_and_figures.R")
 
 # List of packages
 required_packages <- c(
-  "gtsummary", "haven", "flextable", "labelled", "tidyverse", "dplyr"
+  "gtsummary", "haven", "labelled",  "dplyr", "ggplot2"
 )
 
 # Check and load required packages
 for (pkg in required_packages) {
-  if (!requireNamespace(pkg, quietly = TRUE)) {
-    install.packages(pkg)
-  }
   library(pkg, character.only = TRUE)
 }
 
@@ -68,7 +65,7 @@ saveRDS(
 
 
 #### Making figure ####
-figure <- ggplot(Data2_BaseClin, aes(x = VISIT, y = BP_SYSTOLIC_BL, fill = VISIT)) + 
+figure <- ggplot2::ggplot(Data2_BaseClin, aes(x = VISIT, y = BP_SYSTOLIC_BL, fill = VISIT)) + 
   geom_boxplot() + 
   labs(title = "Box Plot of Baseline Systolic Blood Pressure by Agricultural Group",
        x = "Agricultural Group",

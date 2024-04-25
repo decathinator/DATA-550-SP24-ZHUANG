@@ -3,15 +3,12 @@ here::i_am("code/00_import_data.R")
 
 # List of packages
 required_packages <- c(
- "gtsummary", "haven", "flextable", "labelled", "naniar", "pcaMethods", "ISLR", "pls", "glmnet", 
-  "FactoMineR", "factoextra", "car", "corrplot", "VIM", "mice",  "quantreg", "lqr","lqmm","broom", "ordinal","tidyverse", "dplyr"
+ "gtsummary", "haven", "labelled", 
+  "dplyr"
 )
 
 # Check and load required packages
 for (pkg in required_packages) {
-  if (!requireNamespace(pkg, quietly = TRUE)) {
-    install.packages(pkg)
-  }
   library(pkg, character.only = TRUE)
 }
 
@@ -31,10 +28,6 @@ k23issues <- read_sas_with_format("k23issues")
 k23households <- read_sas_with_format("k23households")
 k23dataLAB <- k23data %>% haven::as_factor() %>% labelled::to_factor() 
             
-            # K23 AUGUST data, not complete
-            # k23augdata <- read_sas(paste0(sas_file_path, ""), paste0(sas_file_path, "formats.sas7bcat"))
-            # k23augdataLAB <- k23augdata %>% haven::as_factor() %>% labelled::to_factor()
-
 
 # Import OHEaRD data
 oheard <- read_sas_with_format("ohearddata") %>% filter(VISIT == 1, LOCATION == 2)
