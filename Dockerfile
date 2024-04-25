@@ -3,8 +3,8 @@ FROM rocker/r-ubuntu as base
 RUN apt-get update
 RUN apt-get install -y pandoc
 
-RUN mkdir /report
-WORKDIR /report
+RUN mkdir /project
+WORKDIR /project
 
 RUN mkdir -p renv
 COPY renv.lock renv.lock
@@ -24,8 +24,8 @@ RUN apt-get update
 RUN apt-get install -y pandoc # Ensure Pandoc is installed in the final image
 
 
-WORKDIR /report
-COPY --from=base /report .
+WORKDIR /project
+COPY --from=base /project .
 
 COPY Makefile .
 COPY final_report.Rmd .
@@ -56,6 +56,6 @@ COPY code/01_make_datasets.R code/01_make_datasets.R
 COPY code/02_make_tables_and_figures.R code/02_make_tables_and_figures.R
 COPY code/03_render_report.R code/03_render_report.R
 
-CMD make final_report.html
+RUN mkdir /project/report
 
-CMD cp final_report.html report
+CMD make final_report.html && mv final_report.html report
