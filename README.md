@@ -2,7 +2,7 @@
 
    
 ## Creating the Report    
-  
+0. Clone my repository  
 1. Pull the image from [this link (my image on DockerHub)](https://hub.docker.com/repository/docker/decathinator/data-550-sp24-zhuang/general)   
 2. Type `make mount-report` in the terminal (This step works for both Windows-OS and a Mac/Linux-OS)  
 3. The compiled report should be in your local `\report` folder  
